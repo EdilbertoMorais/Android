@@ -1,4 +1,4 @@
-package br.com.fiap.textcomponent.ui.theme
+package br.com.fiap.calculadoraimc.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
@@ -6,14 +6,13 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import br.com.fiap.textcomponent.R
+import br.com.fiap.calculadoraimc.R
+
+
+val kablammo = FontFamily(Font(R.font.kablammo_regular))
+val shadowsIntoLightRegular = FontFamily(Font(R.font.shadows_into_light_regular))
 
 // Set of Material typography styles to start with
-//val kablammo = FontFamily(Font(R.font.kablammo_regular))
-val interFont = FontFamily(Font(R.font.inter_variable))
-val poppins = FontFamily(Font(R.font.poppins_thin))
-val anton = FontFamily(Font(R.font.anton_regular))
-
 val Typography = Typography(
     bodyLarge = TextStyle(
         fontFamily = FontFamily.Default,
