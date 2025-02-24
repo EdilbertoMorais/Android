@@ -35,7 +35,7 @@ fun LoginScreen() {
             colors = ButtonDefaults.buttonColors(Color(0xFFB3FF04)),
             modifier = Modifier.align(Alignment.Center)
         ) {
-            Text(text = "ENTRAR", fontSize = 20.sp, color = Color.Black)
+            Text(text = "Entrar", fontSize = 20.sp, color = Color.Black)
         }
     }
 }

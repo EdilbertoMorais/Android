@@ -30,7 +30,7 @@ fun MenuScren() {
             .padding(32.dp)
     ) {
         Text(
-            text = "Menu",
+            text = "MENU",
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             color = Color(0xFFB3FF04)

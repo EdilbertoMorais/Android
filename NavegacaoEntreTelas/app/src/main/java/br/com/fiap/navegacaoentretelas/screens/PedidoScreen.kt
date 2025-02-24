@@ -25,7 +25,7 @@ fun PedidosScreen() {
             .padding(32.dp)
     ){
         Text(
-            text = "Pedidos",
+            text = "PEDIDOS",
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             color = Color(0xFFB3FF04)
