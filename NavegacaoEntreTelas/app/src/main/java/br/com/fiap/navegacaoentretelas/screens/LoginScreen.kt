@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
@@ -15,9 +16,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -31,17 +33,23 @@ fun LoginScreen() {
             color = Color(0xFFB3FF04)
         )
         Button(
-            onClick = {},
-            colors = ButtonDefaults.buttonColors(Color(0xFFB3FF04)),
-            modifier = Modifier.align(Alignment.Center)
+            onClick = {
+                navController.navigate("menu")
+            }, colors = ButtonDefaults.buttonColors(Color(0xFFB3FF04)), modifier = Modifier
+                .align(Alignment.Center)
+                .size(
+                    width = 200.dp,
+                    height = 48.dp
+                )
         ) {
             Text(text = "Entrar", fontSize = 20.sp, color = Color.Black)
+
         }
     }
 }
 
-@Preview
-@Composable
-fun LoginScreenPreview() {
-    LoginScreen()
-}
+//@Preview
+//@Composable
+//fun LoginScreenPreview() {
+//    LoginScreen()
+//}

@@ -17,12 +17,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
 @Composable
-fun MenuScren() {
+fun MenuScren(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -42,7 +42,9 @@ fun MenuScren() {
                 .align(Alignment.Center)
         ) {
             Button(
-                onClick = {},
+                onClick = {
+                    navController.navigate("perfil")
+                },
                 colors = ButtonDefaults.buttonColors(Color(0xFFB3FF04)),
                 modifier = Modifier.size(width = 200.dp, height = 48.dp)
             ) {
@@ -50,7 +52,9 @@ fun MenuScren() {
             }
             Spacer(modifier = Modifier.height(16.dp))
             Button(
-                onClick = {},
+                onClick = {
+                    navController.navigate("pedidos")
+                },
                 colors = ButtonDefaults.buttonColors(Color(0xFFB3FF04)),
                 modifier = Modifier.size(width = 200.dp, height = 48.dp)
             ) {
@@ -58,7 +62,9 @@ fun MenuScren() {
             }
             Spacer(modifier = Modifier.height(16.dp))
             Button(
-                onClick = {},
+                onClick = {
+                    navController.navigate("login")
+                },
                 colors = ButtonDefaults.buttonColors(Color(0xFFB3FF04)),
                 modifier = Modifier.size(width = 200.dp, height = 48.dp)
             ) {
@@ -69,8 +75,8 @@ fun MenuScren() {
 
 }
 
-@Preview
-@Composable
-fun MenuScreenPreview() {
-    MenuScren()
-}
+//@Preview
+//@Composable
+//fun MenuScreenPreview() {
+//    MenuScren()
+//}
