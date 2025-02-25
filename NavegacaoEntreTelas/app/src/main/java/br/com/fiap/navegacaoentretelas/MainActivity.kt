@@ -30,8 +30,9 @@ class MainActivity : ComponentActivity() {
                     composable(route = "menu"){
                         MenuScren(navController)
                     }
-                    composable(route = "perfil"){
-                        PerfilScreen(navController)
+                    composable(route = "perfil/{nome}"){
+                       val nome = it.arguments?.getString("nome")
+                        PerfilScreen(navController, nome!!)
                     }
                     composable(route = "pedidos"){
                         PedidosScreen(navController)

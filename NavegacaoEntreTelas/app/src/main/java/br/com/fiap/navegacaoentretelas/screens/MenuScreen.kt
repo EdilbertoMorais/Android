@@ -43,7 +43,7 @@ fun MenuScren(navController: NavController) {
         ) {
             Button(
                 onClick = {
-                    navController.navigate("perfil")
+                    navController.navigate("perfil/Edil")
                 },
                 colors = ButtonDefaults.buttonColors(Color(0xFFB3FF04)),
                 modifier = Modifier.size(width = 200.dp, height = 48.dp)
