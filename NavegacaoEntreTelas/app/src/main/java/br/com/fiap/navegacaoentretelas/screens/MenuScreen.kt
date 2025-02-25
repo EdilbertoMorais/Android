@@ -53,7 +53,10 @@ fun MenuScren(navController: NavController) {
             Spacer(modifier = Modifier.height(16.dp))
             Button(
                 onClick = {
-                    navController.navigate("pedidos")
+                    //informado argumentos na rota
+                    navController.navigate("pedidos?numeroPedido=1234")
+                    //sem informar argumentos na rota - sera devolvido o valor defaultValue
+//                    navController.navigate("pedidos")
                 },
                 colors = ButtonDefaults.buttonColors(Color(0xFFB3FF04)),
                 modifier = Modifier.size(width = 200.dp, height = 48.dp)

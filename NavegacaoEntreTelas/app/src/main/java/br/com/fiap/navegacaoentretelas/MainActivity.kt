@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import br.com.fiap.navegacaoentretelas.screens.LoginScreen
 import br.com.fiap.navegacaoentretelas.screens.MenuScren
 import br.com.fiap.navegacaoentretelas.screens.PedidosScreen
@@ -34,8 +35,13 @@ class MainActivity : ComponentActivity() {
                        val nome = it.arguments?.getString("nome")
                         PerfilScreen(navController, nome!!)
                     }
-                    composable(route = "pedidos"){
-                        PedidosScreen(navController)
+                    composable(
+                        route = "pedidos?numeroPedido={numeroPedido}",
+                        arguments = listOf(navArgument(name = "numeroPedido"){
+                            defaultValue = "número não informado"
+                        })
+                    ){
+                        PedidosScreen(navController, it.arguments?.getString("numeroPedido")!!)
                     }
                 }
             }
