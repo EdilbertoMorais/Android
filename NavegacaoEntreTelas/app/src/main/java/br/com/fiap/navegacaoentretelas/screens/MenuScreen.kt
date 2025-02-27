@@ -75,11 +75,4 @@ fun MenuScren(navController: NavController) {
             }
         }
     }
-
 }
-
-//@Preview
-//@Composable
-//fun MenuScreenPreview() {
-//    MenuScren()
-//}

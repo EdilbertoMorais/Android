@@ -31,19 +31,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.fiap.calculadoraimc.R
 import br.com.fiap.calculadoraimc.calcularIMC
 import br.com.fiap.calculadoraimc.obterStatusIMC
-import br.com.fiap.calculadoraimc.ui.theme.kablammo
 import br.com.fiap.calculadoraimc.ui.theme.shadowsIntoLightRegular
 
 @Composable
@@ -165,7 +162,8 @@ fun IMCScreen() {
                             shape = RoundedCornerShape(16.dp),
                             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                             textStyle = TextStyle(
-                                color = colorResource(id = R.color.verde_atypical),
+//                                color = colorResource(id = R.color.verde_atypical),
+                                color = colorResource(id = R.color.teal_200),
                             )
                         )
                         Spacer(modifier = Modifier.height(22.dp))
@@ -272,4 +270,10 @@ fun IMCScreen() {
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun IMCScreenPreview() {
+    IMCScreen()
 }

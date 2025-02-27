@@ -50,9 +50,3 @@ fun PedidosScreen(
         }
     }
 }
-
-//@Preview
-//@Composable
-//fun PedidosScreenPreview() {
-//    PedidosScreen()
-//}

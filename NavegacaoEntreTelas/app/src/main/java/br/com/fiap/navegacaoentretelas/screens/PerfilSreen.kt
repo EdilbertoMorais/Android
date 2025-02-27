@@ -51,9 +51,3 @@ fun PerfilScreen(
         }
     }
 }
-
-//@Preview
-//@Composable
-//fun PerfilScreenPreview() {
-//    PerfilScreen()
-//}
