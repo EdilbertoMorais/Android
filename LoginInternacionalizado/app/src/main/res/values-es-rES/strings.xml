@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Inicio de Sesión Internacional</string>
+    <string name="login">Inicia Sesión</string>
+    <string name="subtitle">Por favor, introduce tus datos</string>
+    <string name="email">Introduce tu correo electrónico</string>
+    <string name="password">Introduce tu contraseña</string>
+    <string name="enter">INICIAR SESIÓN</string>
+</resources>

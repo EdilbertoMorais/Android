@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Login Internacional</string>
+    <string name="login">Conecte-se</string>
+    <string name="subtitle">Por favor, forneça suas informações</string>
+    <string name="email">Digite seu e-mail</string>
+    <string name="password">Digite sua senha</string>
+    <string name="enter">CONECTAR</string>
+</resources>
