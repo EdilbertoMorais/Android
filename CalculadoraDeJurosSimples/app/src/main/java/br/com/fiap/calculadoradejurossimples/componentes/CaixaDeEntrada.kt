@@ -26,7 +26,7 @@ fun CaixaDeEntrada(
     singleLine: Boolean,
     focusedBorderColor: Color = Color.Gray,
     unfocusedBorderColor: Color = Color.LightGray,
-    textStyle: TextStyle
+    textStyleColor: Color = Color.White
 ) {
     OutlinedTextField(
         value = value,
@@ -41,7 +41,7 @@ fun CaixaDeEntrada(
             focusedLabelColor = labelColor,
             unfocusedLabelColor = placeHolderColor
         ),
-        textStyle = TextStyle(),
+        textStyle = TextStyle(color = textStyleColor),
         keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
         singleLine = singleLine
     )
@@ -62,6 +62,6 @@ fun CaixaDeEntradaPreview(showSystemUi: Boolean = true) {
         true,
         focusedBorderColor = Color.Yellow,
         unfocusedBorderColor = Color.Magenta,
-        TextStyle(color = Color.White)
+        textStyleColor = Color.LightGray,
     )
 }
