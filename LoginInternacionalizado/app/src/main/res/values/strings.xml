@@ -1,4 +1,4 @@
-
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Login Internacional</string>
     <string name="login">Login</string>
@@ -6,4 +6,6 @@
     <string name="email">Enter your e-mail</string>
     <string name="password">Enter your password</string>
     <string name="enter">ENTER</string>
+    <string name="errorEmail">Please, provide your e-mail</string>
+    <string name="errorPassword">Please, provide your password</string>
 </resources>

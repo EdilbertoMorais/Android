@@ -6,4 +6,6 @@
     <string name="email">Introduce tu correo electrónico</string>
     <string name="password">Introduce tu contraseña</string>
     <string name="enter">INICIAR SESIÓN</string>
+    <string name="errorEmail">Por favor, introduce tu correo electrónico</string>
+    <string name="errorPassword">Por favor, introduce tu contraseña</string>
 </resources>

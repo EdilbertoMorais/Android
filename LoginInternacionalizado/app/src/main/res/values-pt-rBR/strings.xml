@@ -6,4 +6,6 @@
     <string name="email">Digite seu e-mail</string>
     <string name="password">Digite sua senha</string>
     <string name="enter">CONECTAR</string>
+    <string name="errorEmail">Por favor, forneça seu e-mail</string>
+    <string name="errorPassword">Por favor, forneça sua senha</string>
 </resources>

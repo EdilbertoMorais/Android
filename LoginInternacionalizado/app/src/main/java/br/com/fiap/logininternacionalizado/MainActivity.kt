@@ -53,6 +53,15 @@ fun LoginInternacionalizado() {
         mutableStateOf("")
     }
 
+    var errorEmail by remember {
+        mutableStateOf(false)
+    }
+    var errorPassword by remember {
+        mutableStateOf(false)
+    }
+
+    val tamanhoMaximo = 8
+
     Column(modifier = Modifier.padding(16.dp)) {
         Text(
             text = stringResource(id = R.string.login),
@@ -81,19 +90,46 @@ fun LoginInternacionalizado() {
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Email
                     ),
+                    isError = errorEmail
                 )
+                if (errorEmail) {
+                    Text(
+                        text = stringResource(id = R.string.errorEmail),
+                        modifier = Modifier.fillMaxWidth(),
+                        fontSize = 14.sp,
+                        color = Color.Red,
+                        textAlign = TextAlign.End
+                    )
+                }
+
                 Spacer(modifier = Modifier.height(16.dp))
                 OutlinedTextField(
                     value = password,
-                    onValueChange = { password = it },
+                    onValueChange = {
+                        if (it.length <= tamanhoMaximo) password = it },
                     modifier = Modifier.fillMaxWidth(),
                     label = {
                         Text(text = stringResource(id = R.string.password))
                     },
-                    visualTransformation = PasswordVisualTransformation()
+                    visualTransformation = PasswordVisualTransformation(),
+                    isError = errorPassword
                 )
+                if (errorPassword) {
+                    Text(
+                        text = stringResource(id = R.string.errorPassword),
+                        modifier = Modifier.fillMaxWidth(),
+                        fontSize = 14.sp,
+                        color = Color.Red,
+                        textAlign = TextAlign.End
+                    )
+                }
+
                 Spacer(modifier = Modifier.height(32.dp))
-                Button(onClick = {}) {
+                Button(
+                    onClick = {
+                        if (email.isEmpty()) errorEmail = true else errorEmail = false
+                        if (password.isEmpty()) errorPassword = true else errorPassword = false
+                    }) {
                     Text(
                         text = stringResource(id = R.string.enter),
                         modifier = Modifier
