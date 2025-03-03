@@ -3,8 +3,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    id("com.google.devtools.ksp")
-//    kotlin("kapt")
+//    id("com.google.devtools.ksp")
+    kotlin("kapt")
 }
 
 android {
@@ -63,5 +63,5 @@ dependencies {
     //Dependencias do Room
     implementation(libs.androidx.room.runtime)
     annotationProcessor(libs.androidx.room.compiler)
-//    kapt(libs.androidx.room.compiler)
+    kapt(libs.androidx.room.compiler)
 }
