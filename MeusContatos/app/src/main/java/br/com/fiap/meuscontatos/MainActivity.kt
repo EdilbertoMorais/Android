@@ -26,6 +26,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -75,6 +76,13 @@ fun ContatosScreen() {
         mutableStateOf(false)
     }
 
+    val context = LocalContext.current
+    val contatoRepository = ContatoRepository(context)
+
+    var listaContatosState = remember {
+        mutableStateOf(contatoRepository.listarContatos())
+    }
+
     Column {
         ContatoForm(
             nome = nomeState.value,
@@ -88,9 +96,12 @@ fun ContatosScreen() {
             },
             onAmigoChange = {
                 amigoState.value = it
+            },
+            atualizar = {
+                listaContatosState.value = contatoRepository.listarContatos()
             }
         )
-        ContatoList()
+        ContatoList(listaContatosState)
     }
 }
 
@@ -101,7 +112,8 @@ fun ContatoForm(
     amigo: Boolean,
     onNomeChange: (String) -> Unit,
     onTelefoneChange: (String) -> Unit,
-    onAmigoChange: (Boolean) -> Unit
+    onAmigoChange: (Boolean) -> Unit,
+    atualizar: () -> Unit
 ) {
     //Obter o contexto da tela
     val context = LocalContext.current
@@ -162,8 +174,8 @@ fun ContatoForm(
                     telefone = telefone,
                     isAmigo = amigo
                 )
-                contatoRepository .salvar(contato)
-
+                contatoRepository.salvar(contato)
+                atualizar()
             },
             modifier = Modifier.fillMaxWidth()
         ) {
@@ -176,22 +188,22 @@ fun ContatoForm(
 }
 
 @Composable
-fun ContatoList() {
+fun ContatoList(listaContatos: MutableState<List<Contato>>) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
             .verticalScroll(rememberScrollState())
     ) {
-        for (i in 0..10) {
-            ContatoCard()
+        for (contato in listaContatos.value) {
+            ContatoCard(contato)
             Spacer(modifier = Modifier.height(4.dp))
         }
     }
 }
 
 @Composable
-fun ContatoCard() {
+fun ContatoCard(contato: Contato) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
@@ -207,17 +219,17 @@ fun ContatoCard() {
                     .weight(2f)
             ) {
                 Text(
-                    text = "Nome do Contato",
+                    text = contato.nome,
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "8888-9999",
+                    text = contato.telefone,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "Amigo",
+                    text = if(contato.isAmigo) "Amigo" else "Contato",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold
                 )
