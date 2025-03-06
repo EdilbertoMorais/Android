@@ -170,10 +170,9 @@ fun GameCard(game: Game) {
 
 @Preview(
     showBackground = true,
-    showSystemUi = true,
-    uiMode = 50
+    showSystemUi = true
 )
 @Composable
-fun GamesScreenPreview() {
+private fun GamesScreenPreview() {
     GamesScreen()
 }
