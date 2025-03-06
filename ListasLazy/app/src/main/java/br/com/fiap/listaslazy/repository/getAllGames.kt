@@ -19,6 +19,7 @@ fun getAllGames(): List<Game> {
 
 fun getGamesByStudio(studio: String): List<Game>{
     return getAllGames().filter {
+        // Realiza a busca pelo conjunto de caracteres digitados pelo usuario.
         it.studio.startsWith(prefix = studio, ignoreCase = true)
     }
 }

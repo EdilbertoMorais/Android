@@ -24,6 +24,10 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,7 +37,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.fiap.listaslazy.model.Game
-import br.com.fiap.listaslazy.repository.getAllGames
 import br.com.fiap.listaslazy.repository.getGamesByStudio
 import br.com.fiap.listaslazy.ui.theme.ListasLazyTheme
 
@@ -57,6 +60,10 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GamesScreen() {
+
+    var studioState by remember { mutableStateOf("") }
+    var listGamesByStudios by remember { mutableStateOf(getGamesByStudio(studioState)) }
+
     Column(modifier = Modifier.padding(16.dp)) {
         Text(
             text = "Lista de Jogos Favoritos",
@@ -69,25 +76,31 @@ fun GamesScreen() {
         )
         Spacer(modifier = Modifier.height(16.dp))
         OutlinedTextField(
-            value = "",
-            onValueChange = {},
+            value = studioState,
+            onValueChange = {
+                studioState = it
+                listGamesByStudios = getGamesByStudio(studioState)
+            },
             modifier = Modifier.fillMaxWidth(),
             label = {
-                Text(text = "Nome do estúdio")
+                Text(text = "Digite os dados para busca.")
             },
-            trailingIcon = {
-                IconButton(onClick = { /*TODO*/ }) {
-                    Icon(
-                        imageVector = Icons.Default.Search,
-                        contentDescription = ""
-                    )
-                }
-            }
+//            trailingIcon = {
+//                IconButton(onClick = {
+//                    listGamesByStudios = getGamesByStudio(studioState)
+//                }) {
+//                    Icon(
+//                        imageVector = Icons.Default.Search,
+//                        contentDescription = "Ícone de Busca"
+//                    )
+//                }
+//            },
+            singleLine = true
         )
         Spacer(modifier = Modifier.height(16.dp))
-        LazyColumn() {
-            items(getAllGames().size) {
-                GameCard(game = getAllGames()[it])
+        LazyColumn {
+            items(listGamesByStudios.size) {
+                GameCard(game = listGamesByStudios[it])
             }
         }
     }
@@ -102,9 +115,12 @@ fun GameCard(game: Game) {
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            Column(modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp).weight(3f)) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+                    .weight(3f)
+            ) {
                 Text(
                     text = game.title,
                     fontSize = 20.sp,
@@ -118,7 +134,9 @@ fun GameCard(game: Game) {
             }
             Text(
                 text = game.releaseYear.toString(),
-                modifier = Modifier.weight(1f).fillMaxWidth(),
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth(),
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Blue
