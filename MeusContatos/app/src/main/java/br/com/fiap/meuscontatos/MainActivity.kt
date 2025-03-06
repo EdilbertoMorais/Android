@@ -15,6 +15,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -64,22 +65,22 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun ContatosScreen() {
 
-    var nomeState = remember {
+    val nomeState = remember {
         mutableStateOf("")
     }
 
-    var telefoneState = remember {
+    val telefoneState = remember {
         mutableStateOf("")
     }
 
-    var amigoState = remember {
+    val amigoState = remember {
         mutableStateOf(false)
     }
 
     val context = LocalContext.current
     val contatoRepository = ContatoRepository(context)
 
-    var listaContatosState = remember {
+    val listaContatosState = remember {
         mutableStateOf(contatoRepository.listarContatos())
     }
 
@@ -101,7 +102,10 @@ fun ContatosScreen() {
                 listaContatosState.value = contatoRepository.listarContatos()
             }
         )
-        ContatoList(listaContatosState)
+        ContatoList(
+            listaContatosState,
+            atualizar = { listaContatosState.value = contatoRepository.listarContatos() }
+        )
     }
 }
 
@@ -188,7 +192,10 @@ fun ContatoForm(
 }
 
 @Composable
-fun ContatoList(listaContatos: MutableState<List<Contato>>) {
+fun ContatoList(
+    listaContatos: MutableState<List<Contato>>,
+    atualizar: () -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -196,20 +203,21 @@ fun ContatoList(listaContatos: MutableState<List<Contato>>) {
             .verticalScroll(rememberScrollState())
     ) {
         for (contato in listaContatos.value) {
-            ContatoCard(contato)
+            ContatoCard(contato, atualizar)
             Spacer(modifier = Modifier.height(4.dp))
         }
     }
 }
 
 @Composable
-fun ContatoCard(contato: Contato) {
+fun ContatoCard(contato: Contato, atualizar: () -> Unit) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
             containerColor = Color.LightGray
         )
     ) {
+        val context = LocalContext.current
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -229,15 +237,32 @@ fun ContatoCard(contato: Contato) {
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = if(contato.isAmigo) "Amigo" else "Contato",
+                    text = if (contato.isAmigo) "Amigo" else "Contato",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold
                 )
             }
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = {
+                val contatoRepository = ContatoRepository(context)
+                contatoRepository.atualizar(contato = contato)
+                atualizar()
+
+            }) {
+                Icon(
+                    imageVector = Icons.Default.Edit,
+                    contentDescription = "Ícone de edição"
+                )
+            }
+
+            IconButton(onClick = {
+                val contatoRepository = ContatoRepository(context)
+                contatoRepository.excluir(contato = contato)
+                atualizar()
+
+            }) {
                 Icon(
                     imageVector = Icons.Default.Delete,
-                    contentDescription = ""
+                    contentDescription = "Ícone de exclusão"
                 )
             }
         }

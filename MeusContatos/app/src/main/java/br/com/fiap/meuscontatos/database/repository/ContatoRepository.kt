@@ -13,7 +13,7 @@ class ContatoRepository(context: Context) {
         return db.salvar(contato = contato)
     }
 
-    fun atalizar(contato: Contato): Int {
+    fun atualizar(contato: Contato): Int {
         return db.atualizar(contato = contato)
     }
 
