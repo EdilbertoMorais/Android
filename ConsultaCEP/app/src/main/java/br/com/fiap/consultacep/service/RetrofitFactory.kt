@@ -5,11 +5,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitFactory {
 
-    private val URL = "https://viacep.com.br/ws/"
+    private val url = "https://viacep.com.br/ws/"
 
     private val retrofitFactory = Retrofit
         .Builder()
-        .baseUrl(URL)
+        .baseUrl(url)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
